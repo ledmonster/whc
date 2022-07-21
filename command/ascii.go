@@ -58,7 +58,7 @@ type AsciiCmd struct {
 func (*AsciiCmd) Name() string     { return "ascii" }
 func (*AsciiCmd) Synopsis() string { return "show hacker" }
 func (*AsciiCmd) Usage() string {
-	return "whc ascii [-w <width>] token_id"
+	return "whc ascii [-w <width>] token_ids ...\n"
 }
 func (c *AsciiCmd) SetFlags(f *flag.FlagSet) {
 	f.IntVar(&c.width, "width", 0, "image width")
@@ -78,7 +78,7 @@ func (c *AsciiCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...interface{
 	}
 
 	height := 0
-	t := time.NewTicker(time.Second)
+	t := time.NewTicker(time.Millisecond * 500)
 	defer t.Stop()
 	for {
 		for _, tokenID := range tokenIDs {
